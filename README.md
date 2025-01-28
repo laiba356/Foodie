@@ -53,7 +53,6 @@ Transparent and user-friendly pages to familiarize customers with the app’s pu
 ## Previous Orders:
 Users can view their order history directly from their account.
 
-# Screens
-![WhatsApp Image 2025-01-07 at 12 13 34 PM (2)](https://github.com/user-attachments/assets/3f9b2b74-dd43-4cee-bf6a-0058c5c79885) ![WhatsApp Image 2025-01-07 at 12 13 33 PM (2)](https://github.com/user-attachments/assets/7212c5d7-a648-460e-8c9a-2b288eed0b00) ![WhatsApp Image 2025-01-28 at 1 03 01 AM](https://github.com/user-attachments/assets/854ffb30-80da-4e36-b157-4c178c2ee68f)
+# App Functionality Preview
 
 
