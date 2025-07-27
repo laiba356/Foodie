@@ -83,7 +83,7 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
             const SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
-                if (globlePriceTotal! >= 1000) {
+                if (globlePriceTotal >= 1000) {
                   setState(() {
                     isScanning = true;
                   });

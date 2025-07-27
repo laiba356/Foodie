@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodiee/menu/global_variables.dart';
 
-class OrderedProductContainer extends StatelessWidget {
+class OrderedProductContainer extends StatefulWidget {
   final String image;
   final String name;
   final int price;
@@ -12,6 +12,39 @@ class OrderedProductContainer extends StatelessWidget {
     required this.name,
     required this.price,
   });
+
+  @override
+  State<OrderedProductContainer> createState() =>
+      _OrderedProductContainerState();
+}
+
+class _OrderedProductContainerState extends State<OrderedProductContainer> {
+  int quantity = 1;
+
+  void _increaseQuantity() {
+    setState(() {
+      quantity += 1;
+      globlePriceTotal += widget.price;
+    });
+  }
+
+  void _decreaseQuantity() {
+    if (quantity > 1) {
+      setState(() {
+        quantity -= 1;
+        globlePriceTotal -= widget.price;
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Minimum quantity is 1'),
+          duration: Duration(seconds: 2),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.redAccent,
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +67,9 @@ class OrderedProductContainer extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Hero(
-              tag: name,
+              tag: widget.name,
               child: Image.asset(
-                image,
+                widget.image,
                 width: 100,
                 height: 100,
                 fit: BoxFit.cover,
@@ -49,7 +82,7 @@ class OrderedProductContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  name,
+                  widget.name,
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -57,7 +90,7 @@ class OrderedProductContainer extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Rs.$price',
+                  'Rs.${widget.price}',
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -72,10 +105,8 @@ class OrderedProductContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                onPressed: () {
-                  // Decrease quantity
-                },
-                icon: const Icon(Icons.remove, color: Colors.orange),
+                onPressed: _increaseQuantity,
+                icon: const Icon(Icons.add, color: Colors.orange),
               ),
               Text(
                 "$quantity",
@@ -85,10 +116,8 @@ class OrderedProductContainer extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: () {
-                  // Increase quantity
-                },
-                icon: const Icon(Icons.add, color: Colors.orange),
+                onPressed: _decreaseQuantity,
+                icon: const Icon(Icons.remove, color: Colors.orange),
               ),
             ],
           ),

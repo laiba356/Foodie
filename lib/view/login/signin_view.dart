@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodiee/Database/users_database_service.dart';
 import 'package:foodiee/Database/users_model_class.dart';
+import 'package:foodiee/auth/auth_service.dart';
 import 'package:foodiee/commonwidgets/logo_container.dart';
 import 'package:foodiee/commonwidgets/signuplogin_textfields.dart';
 import 'package:foodiee/commonwidgets/sizedbox_btwsignup_tfields.dart';
@@ -17,6 +18,7 @@ class SigninView extends StatefulWidget {
 }
 
 class LoginPageState extends State<SigninView> {
+  final _auth = AuthService();
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -218,21 +220,15 @@ class LoginPageState extends State<SigninView> {
   }
 
   void _elevatedButtonPress() async {
-    // setState(() {
-    //   globleFirstName = firstNameController.text;
-    //   globleLastName = lastNameController.text;
-    //   globlePhoneNumber = mobileController.text;
-    // });
-    // print('Globle email: $globleFirstName');
-    // if (_formKey.currentState?.validate() ?? false) {
-    //   Navigator.push(context,
-    //       MaterialPageRoute(builder: (context) => const ProfileBody()));
-    // }
     setState(() {
       globleemail = emailController.text;
     });
     print('Globle email: $globleemail');
-    if (_formKey.currentState?.validate() ?? false) {
+    final user = await _auth.createUserWithEmailAndPassword(
+        emailController.text, passwordController.text);
+    if (user != null &&
+        _formKey.currentState != null &&
+        _formKey.currentState!.validate()) {
       _formKey.currentState?.save(); // Save the form data
       setState(() {
         // Print or use the saved variables
@@ -241,6 +237,7 @@ class LoginPageState extends State<SigninView> {
         print('Email: $email');
         print('Phone Number: $phoneNumber');
       });
+
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const HomePage()));
     }

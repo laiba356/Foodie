@@ -46,7 +46,7 @@ class _MyHomePageState extends State<DiscountPage> {
               height: 10,
             ),
             Text(
-              "Now: ${(globlePriceTotal! * 0.80).toInt()}",
+              "Now: ${(globlePriceTotal * 0.80).toInt()}",
               style: const TextStyle(color: Colors.white, fontSize: 17),
             ),
             const SizedBox(

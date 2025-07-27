@@ -286,7 +286,7 @@ class _HomeBodyState extends State<HomeBody> with TickerProviderStateMixin {
           Navigator.of(context).push(
             PageRouteBuilder(
               transitionDuration: const Duration(
-                  milliseconds: 1000), // Set Hero animation duration
+                  milliseconds: 1000),
               pageBuilder: (context, animation, secondaryAnimation) {
                 return PizzaDetailPage(
                   name: selectedItem.name,
@@ -302,7 +302,7 @@ class _HomeBodyState extends State<HomeBody> with TickerProviderStateMixin {
           Navigator.of(context).push(
             PageRouteBuilder(
               transitionDuration: const Duration(
-                  milliseconds: 1000), // Duration for Burger page
+                  milliseconds: 1000), 
               pageBuilder: (context, animation, secondaryAnimation) {
                 return BurgerDetailPage(
                   name: selectedItem.name,

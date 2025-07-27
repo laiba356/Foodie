@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodiee/Database/users_database_service.dart';
 import 'package:foodiee/Database/users_model_class.dart';
+import 'package:foodiee/auth/auth_service.dart';
 import 'package:foodiee/commonwidgets/logo_container.dart';
 import 'package:foodiee/commonwidgets/signuplogin_textfields.dart';
 import 'package:foodiee/commonwidgets/sizedbox_btwsignup_tfields.dart';
@@ -17,6 +18,7 @@ class LoginView extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginView> {
+  final _auth = AuthService();
   bool move = false;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -44,7 +46,7 @@ class LoginPageState extends State<LoginView> {
           ),
           // Second child of Stack
           Positioned(
-            top: size.height * 0.1, // Adjust this value as needed
+            top: size.height * 0.1,
             left: 0,
             right: 0,
             child: const LogoContainer(),
@@ -169,9 +171,9 @@ class LoginPageState extends State<LoginView> {
     print('Globle email: $globleemail'); // Debugging log
     emailEntered = emailController.text;
     passwordEntered = passwordController.text;
-    var emailExistOrNot = await doesEmailExist(emailEntered!);
-    //  var passwordExistOrNot = await doesPasswordExist(passwordEntered!);
-    if (emailExistOrNot) {
+    final user = await _auth.loginUserWithEmailAndPassword(
+        emailEntered!, passwordEntered!);
+    if (user != null) {
       Navigator.push(
         context,
         PageRouteBuilder(
@@ -188,11 +190,7 @@ class LoginPageState extends State<LoginView> {
           },
         ),
       );
-    }
-    // else if (emailExistOrNot && passwordExistOrNot == false) {
-    //   _showPasswordIncorrectDialog(context);
-    // }
-    else {
+    } else {
       _showNotSignedUpDialog(context);
     }
   }

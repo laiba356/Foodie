@@ -6,7 +6,7 @@ String? globleimage;
 String? globlename;
 int? globleprice;
 String? globleAddress;
-int? globlePriceTotal = 0;
+int globlePriceTotal = 0;
 
 
 // String? globleemail;

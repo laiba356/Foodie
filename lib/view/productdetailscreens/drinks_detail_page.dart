@@ -256,7 +256,7 @@ class _ProductDetailPageState extends State<DrinksDetailPage> {
       // globlename = widget.name;
       // globleprice = widget.price;
     });
-    globlePriceTotal = (globlePriceTotal! + widget.price);
+    globlePriceTotal = (globlePriceTotal + widget.price);
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text('$name Added to cart')));
     print("userOrders:$userOrders");

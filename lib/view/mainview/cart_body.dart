@@ -19,6 +19,22 @@ class _CartBodyState extends State<CartBody> {
       ordersMap[globleemail!] = [];
     }
     userOrders = ordersMap[globleemail]!;
+    _calculateTotal();
+  }
+
+  void _calculateTotal() {
+    globlePriceTotal = 0;
+    for (var order in userOrders) {
+      globlePriceTotal += int.tryParse(order['price'].toString()) ?? 0;
+    }
+  }
+
+  void _removeItem(int index) {
+    setState(() {
+      int price = int.tryParse(userOrders[index]['price'].toString()) ?? 0;
+      globlePriceTotal = (globlePriceTotal - price);
+      userOrders.removeAt(index);
+    });
   }
 
   @override
@@ -63,10 +79,24 @@ class _CartBodyState extends State<CartBody> {
                 : ListView.builder(
                     itemCount: userOrders.length,
                     itemBuilder: (context, index) {
-                      return OrderedProductContainer(
-                        name: userOrders[index]['name'],
-                        image: userOrders[index]['image'],
-                        price: userOrders[index]['price'],
+                      final item = userOrders[index];
+                      return Dismissible(
+                        key: UniqueKey(),
+                        direction: DismissDirection.endToStart,
+                        background: Container(
+                          color: Colors.red,
+                          padding: const EdgeInsets.only(right: 20),
+                          alignment: Alignment.centerRight,
+                          child: const Icon(Icons.delete, color: Colors.white),
+                        ),
+                        onDismissed: (direction) {
+                          _removeItem(index);
+                        },
+                        child: OrderedProductContainer(
+                          name: item['name'],
+                          image: item['image'],
+                          price: item['price'],
+                        ),
                       );
                     },
                   ),
