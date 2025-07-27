@@ -19,14 +19,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = [
-    const Center(child: Text("My Account Page")),
-    const Center(child: Text("Menu Page")),
-    const Center(child: Text("Discount Page")),
-    const Center(child: Text("Favourites Page")),
-    const Center(child: Text("My Cart Page")),
-  ];
-
   @override
   void initState() {
     super.initState();

@@ -27,7 +27,7 @@ class LoginPageState extends State<SigninView> {
   final TextEditingController confirmPasswordController =
       TextEditingController();
   bool move = false;
-  double bottom = 0;
+  //double bottom = 0;
   final _formKey = GlobalKey<FormState>();
 
   //
