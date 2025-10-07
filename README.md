@@ -15,7 +15,7 @@ A welcoming and informative onboarding flow guides new users through the app’s
 
 ## User Authentication:
 Sign In/Sign Up: Secure login and registration functionality to create and manage user accounts.
-User profile data is stored in the SQLite database and fetched dynamically to display personalized information.
+User authentication (sign-in and sign-up) is handled using Firebase, while user profile data is stored locally in the SQLite database and fetched dynamically to display personalized information.
 
 ## Main View:
 Displays product categories and a list of products dynamically filtered by the selected category.
