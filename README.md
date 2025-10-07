@@ -8,7 +8,7 @@ A new Flutter project.
 Built using Dart and Flutter, ensuring seamless performance across Android and iOS devices.
 
 ## Backend Integration: 
-Utilizes SQLite to store order data locally, providing fast and reliable access to user and product information.
+Utilizes SQLite to store order data locally and Firebase for user authentication, providing fast and reliable access to user and product information.
 
 ## Onboarding Screen: 
 A welcoming and informative onboarding flow guides new users through the app’s features and encourages them to get started.
